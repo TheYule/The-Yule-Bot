@@ -1,9 +1,11 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
-    name: "invite",
-    description: "Invite me to your servers.",
-    execute(message) {
+	data: new SlashCommandBuilder()
+		.setName("invite")
+		.setDescription("Invite me to your servers."),
+	async execute(interaction) {
         const embed = new MessageEmbed()
             .setColor("YELLOW")
             .setTitle("Invite")
@@ -15,6 +17,6 @@ module.exports = {
                     .setStyle("LINK")
                     .setURL("https://discord.com/api/oauth2/authorize?client_id=828971174293536798&permissions=2080894038&scope=bot%20applications.commands"),
             );
-        message.channel.send({ embeds: [embed], components: [row] });
-    }
-}
+		await interaction.reply({ embeds: [embed], components: [row] });
+	}
+};

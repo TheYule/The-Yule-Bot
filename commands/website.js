@@ -1,19 +1,20 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports = {
-    name: "invite",
-    description: "Invite me to your servers.",
+    name: "website",
+    aliases: ["web"],
+    description: "A great place to go.",
     execute(message) {
         const embed = new MessageEmbed()
             .setColor("YELLOW")
-            .setTitle("Invite")
-            .setDescription("Invite me to your servers. I *may* be of some use...");
+            .setTitle("Website")
+            .setDescription("https://theyule.xyz is my developer's blog/kinda website thing. Yes he used WordPress. But only for that.");
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
                     .setLabel("Click Here")
                     .setStyle("LINK")
-                    .setURL("https://discord.com/api/oauth2/authorize?client_id=828971174293536798&permissions=2080894038&scope=bot%20applications.commands"),
+                    .setURL("https://theyule.xyz"),
             );
         message.channel.send({ embeds: [embed], components: [row] });
     }

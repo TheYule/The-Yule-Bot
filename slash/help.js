@@ -1,11 +1,13 @@
+const { bot } = require("../index");
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
-    name: "help",
-    aliases: ["?"],
-    description: "All my wonderful commands.",
-    execute(message) {
-        const client = message.client;
+	data: new SlashCommandBuilder()
+		.setName("help")
+		.setDescription("All my wonderful commands."),
+	async execute(interaction) {
+        const client = bot.client;
         const { commands } = client;
         const body = [];
 
@@ -29,6 +31,7 @@ module.exports = {
                     .setStyle("LINK")
                     .setURL("https://www.theyule.xyz/bot")
             );
-        message.channel.send({ embeds: [embed], components: [row] });
-    }
-}
+        
+		await interaction.reply({ embeds: [embed], components: [row] });
+	}
+};
